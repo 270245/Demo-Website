@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Services | Hazgen</title>
+<link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <img src="images/cropped-HazGen-Logo.png" alt="Hazgen Logo">
+    <h2>HAZGEN</h2>
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="explore.html" class="active">Explore</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="explore-hero">
+  <div>
+    <h1>Explore Our Services</h1>
+    <p>Industrial • Commercial • Waste Management Solutions</p>
+  </div>
+</section>
+
+<!-- FILTER BUTTONS -->
+<section class="filter-section">
+  <button onclick="filterCards('all')">All</button>
+  <button onclick="filterCards('waste')">Waste</button>
+  <button onclick="filterCards('cleaning')">Cleaning</button>
+  <button onclick="filterCards('rental')">Rentals</button>
+</section>
+
+<!-- GRID -->
+<section class="explore-grid">
+
+  <div class="card waste" onclick="openModal('hazardous')">
+    <img src="images/hazardous.jfif" alt="Hazardous Waste">
+    <h3>Hazardous Waste</h3>
+    <p>Safe disposal of hazardous materials and chemicals.</p>
+  </div>
+
+  <div class="card cleaning" onclick="openModal('cleaning')">
+    <img src="images/industrial-cleaning.jfif" alt="Industrial Cleaning">
+    <h3>Industrial Cleaning</h3>
+    <p>Deep cleaning for factories and industrial sites.</p>
+  </div>
+
+  <div class="card waste" onclick="openModal('commercial')">
+    <img src="images/commercial-waste.jfif" alt="Commercial Waste">
+    <h3>Commercial Waste</h3>
+    <p>Reliable waste management for businesses.</p>
+  </div>
+
+  <div class="card rental" onclick="openModal('dumpster')">
+    <img src="images/dumpster-rental.jfif" alt="Dumpster Rental">
+    <h3>Dumpster Rentals</h3>
+    <p>Flexible dumpster rental solutions for all sites.</p>
+  </div>
+
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <div id="modal-body"></div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Hazgen Group. All Rights Reserved.</p>
+</footer>
+
+<!-- FILTER SCRIPT -->
+<script>
+function filterCards(category){
+  let cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    if(category === "all"){
+      card.style.display = "block";
+    } else {
+      card.style.display = card.classList.contains(category) ? "block" : "none";
+    }
+  });
+}
+</script>
+
+<!-- MODAL SCRIPT -->
+<script>
+function openModal(type){
+
+  let content = "";
+
+  if(type === "hazardous"){
+    content = `
+      <h2>Hazardous Waste Management</h2>
+      <p>We safely handle and dispose hazardous materials according to regulations.</p>
+      <ol>
+        <li>Site inspection</li>
+        <li>Risk classification</li>
+        <li>Safe containment</li>
+        <li>Transport</li>
+        <li>Final disposal</li>
+      </ol>
+    `;
+  }
+
+  if(type === "cleaning"){
+    content = `
+      <h2>Industrial Cleaning</h2>
+      <p>Heavy-duty cleaning for factories and industrial environments.</p>
+      <ol>
+        <li>Assessment</li>
+        <li>Equipment setup</li>
+        <li>Deep cleaning process</li>
+        <li>Quality inspection</li>
+      </ol>
+    `;
+  }
+
+  if(type === "commercial"){
+    content = `
+      <h2>Commercial Waste Management</h2>
+      <p>Efficient waste collection and recycling for businesses.</p>
+      <ol>
+        <li>Waste audit</li>
+        <li>Collection scheduling</li>
+        <li>Sorting & recycling</li>
+        <li>Disposal</li>
+      </ol>
+    `;
+  }
+
+  if(type === "dumpster"){
+    content = `
+      <h2>Dumpster Rentals</h2>
+      <p>Flexible dumpster sizes for construction and commercial use.</p>
+      <ol>
+        <li>Select size</li>
+        <li>Delivery to site</li>
+        <li>Usage period</li>
+        <li>Pickup & disposal</li>
+      </ol>
+    `;
+  }
+
+  document.getElementById("modal-body").innerHTML = content;
+  document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display = "none";
+}
+</script>
+
+</body>
+</html>
